@@ -14,7 +14,7 @@ window.onload = () => recorder.start()
 
 recorder.onresult = (event) => {
 
-   if (event.results[0][0].transcript == names[randomFlag]) { alert("Awesome, you earned a point!"); addScore(); window.location.reload(true); }
+   if (event.results[0][0].transcript.toUpperCase() == names[randomFlag].toUpperCase()) { alert("Awesome, you earned a point!"); addScore(); window.location.reload(true); }
    else { alert("Incorrect!"); window.location.reload(true); }
    
 }
