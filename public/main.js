@@ -3,11 +3,11 @@ const names = ["Andorra", "United Arab Emirates", "Afghanistan", "Antigua and Ba
 
 function getRandomIndex(arr)
 {
-   return Math.floor(Math.random() * arr.length);	
+   return Math.floor(Math.random() * arr.length);
 }
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recorder = new SpeechRecognition();
+var recorder = new SpeechRecognition();
 var randomFlag = getRandomIndex(suitableFlags);
 
 recorder.onstart = () => {
@@ -17,28 +17,23 @@ recorder.onstart = () => {
 window.onload = () => recorder.start()
 
 recorder.onresult = (event) => {
-   console.log(event.results[0][0].transcript);
    if (event.results[0][0].transcript.toUpperCase() == names[randomFlag].toUpperCase()) { alert("Awesome, you earned a point!"); addScore(); window.location.reload(true); }
-   else { alert("Incorrect!"); window.location.reload(true); }
-   
+   else {alert("Incorrect!"); window.location.reload(true);}
 }
 
 function randomiseFlag() {
    let img = document.getElementById("imgPlaceholder");
-   img.src = `https://www.countryflags.io/${suitableFlags[randomFlag]}/flat/64.png`;
-   
+   img.src = `https://www.countryflags.io/${suitableFlags[randomFlag]}/flat/64.png`;   
 }
 
 function addScore() {
-   let currentScore = localStorage.getItem("i") || 0
-   // Score 
-   localStorage.setItem("i", currentScore + 1)
-
+   let currentScore = parseInt(localStorage.getItem("i")) || 0;
+   window.localStorage.setItem("i", currentScore + 1)
 }
 
 function alertScore() {
-   let currentScore = localStorage.getItem("i")
-   alert("Your currentScore is: ", currentScore)
+   let currentScore = window.localStorage.getItem("i") || 0;
+   alert("Your currentScore is: " + currentScore)
 }
 
 randomiseFlag();
