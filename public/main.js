@@ -7,8 +7,8 @@ function getRandomIndex(arr)
 }
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-var recorder = new SpeechRecognition();
-var randomFlag = getRandomIndex(suitableFlags);
+const recorder = new SpeechRecognition();
+const randomFlag = getRandomIndex(suitableFlags);
 
 recorder.onstart = () => {
    console.log('Listening...')
